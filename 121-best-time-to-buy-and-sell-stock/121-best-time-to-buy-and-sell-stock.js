@@ -18,11 +18,13 @@ var maxProfit = function(prices) {
     var buyIn = prices[0];
     var profit = 0;
     for (var i = 0; i < prices.length; i++) {
-        if ((prices[i] - buyIn) > profit) {
-            profit = prices[i] - buyIn;
-        }
         if (prices[i] < buyIn) {
             buyIn = prices[i];
+        } else {
+            var diff = prices[i] - buyIn;
+            if (diff > profit) {
+                profit = diff;
+            }
         }
     }
     return profit;
