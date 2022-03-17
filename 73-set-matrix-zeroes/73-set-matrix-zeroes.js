@@ -15,8 +15,15 @@ var setZeroes = function(matrix) {
     }
     
     for (var i = 0; i < matrix.length; i++) {
+        if (row.has(i)) {
+            matrix[i].fill(0);
+            continue;
+        }
         for (var j = 0; j < matrix[0].length; j++) {
-            if (row.has(i) || col.has(j)) {
+            // if (row.has(i) || col.has(j)) {
+            //     matrix[i][j] = 0;
+            // }
+            if (col.has(j)) {
                 matrix[i][j] = 0;
             }
         }
