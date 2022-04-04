@@ -25,14 +25,14 @@ var topKFrequent = function(nums, k) {
     
     var ans = [];
     var map1 = new Map();
-    // nums.forEach(n => map1.set(n, map1.get(n) + 1 || 1));
-    for (let num of nums) {
-        if (map1.has(num)) {
-            map1.set(num, map1.get(num) + 1);
-        } else {
-            map1.set(num, 1);
-        }
-    }
+    nums.forEach(n => map1.set(n, map1.get(n) + 1 || 1));
+    // for (let num of nums) {
+    //     if (map1.has(num)) {
+    //         map1.set(num, map1.get(num) + 1);
+    //     } else {
+    //         map1.set(num, 1);
+    //     }
+    // }
     var sortable = [...map1.entries()].sort((a,b) => b[1] - a[1]);
     console.log(sortable)
     for (let i = 0; i < k; i++) {
