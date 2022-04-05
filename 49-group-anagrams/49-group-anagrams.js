@@ -3,14 +3,14 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    var ans = {};
-    for (var i = 0; i < strs.length; i++) {
-        var letters = strs[i].split("").sort().join("");
-        if (ans[letters]) {
-            ans[letters].push(strs[i]);
+    var obj = {};
+    for (let i = 0; i < strs.length; i++) {
+        var sortedStr = strs[i].split('').sort().join('');
+        if (obj[sortedStr]) {
+            obj[sortedStr].push(strs[i]);
         } else {
-            ans[letters] = [strs[i]];
+            obj[sortedStr] = [strs[i]];
         }
     }
-    return Object.values(ans);
+    return Object.values(obj)
 };
