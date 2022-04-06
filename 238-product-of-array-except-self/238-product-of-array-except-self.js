@@ -10,15 +10,11 @@ var productExceptSelf = function(nums) {
     // 1  2   6   24
     // 24 24  12  4   
     
-    var arry1 = [];
+    var arry1 = [nums[0]];
     var arry2 = [];
     var ans = [];
-    for (let i = 0; i < nums.length; i++) {
-        if (arry1.length === 0) {
-            arry1.push(nums[i]);
-        } else {
-            arry1.push(nums[i] * arry1[i - 1]);
-        }
+    for (let i = 1; i < nums.length; i++) {
+        arry1.push(nums[i] * arry1[i - 1]);
     }
     for (let i = nums.length - 1; i >= 0; i--) {
         if (arry2.length === 0) {
