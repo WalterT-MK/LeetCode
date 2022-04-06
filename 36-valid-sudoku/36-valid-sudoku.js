@@ -4,9 +4,9 @@
  */
 var isValidSudoku = function(board) {
     for (let i = 0; i < 9; i++) {
-        var row = new Set();
-        var col = new Set();
-        var box = new Set();
+        let row = new Set();
+        let col = new Set();
+        let box = new Set();
         
         for (let j = 0; j < 9; j++) {
             let _row = board[i][j];
