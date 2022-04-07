@@ -7,13 +7,14 @@ var characterReplacement = function(s, k) {
     var charSet = {};
     var longestChar = 0;
     var l = 0;
+    let maxfChar = 0;
     for (var r = 0; r < s.length; r++) {
         if (charSet[s[r]]) {
             charSet[s[r]] += 1;
         } else {
             charSet[s[r]] = 1;
         }
-        var maxfChar = Math.max(...Object.values(charSet));
+        maxfChar = Math.max(charSet[s[r]], maxfChar);
         if (r - l + 1 - maxfChar > k) {
             charSet[s[l]] -= 1;
             l += 1;
