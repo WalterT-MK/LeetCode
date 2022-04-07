@@ -10,13 +10,12 @@ var longestConsecutive = function(nums) {
         if (set1.has(num - 1)) {
             continue;
         }
-        let currmax = 1;
+        let length = 1;
         let currnum = num;
-        while(set1.has(currnum + 1)) {
-            currnum++;
-            currmax++;
+        while(set1.has(currnum + length)) {
+            length+=1;
         }
-        max = Math.max(max, currmax);
+        max = Math.max(max, length);
     }
     return max;
 };
