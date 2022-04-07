@@ -8,7 +8,7 @@ var maxArea = function(height) {
     let max = 0
     while (l < r) {
         let currMax = Math.min(height[l], height[r]) * (r - l);
-        max = Math.max(max, currMax);
+        if(currMax > max) max = currMax;
         if(height[l] > height[r]) {
             r--;
         } else {
