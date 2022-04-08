@@ -41,7 +41,7 @@ var minWindow = function(s, t) {
     });
     let count = Object.keys(map).length;
 
-    while (right <= s.length) {
+    while (right < s.length) {
 		// found a valid substring
         if (count == 0) {
 		
