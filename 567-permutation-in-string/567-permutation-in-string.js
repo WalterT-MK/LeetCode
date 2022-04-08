@@ -6,25 +6,38 @@
 var checkInclusion = function(s1, s2) {
     if (s2.length < s1.length) return false;
     
-    let map = new Map();
-    for (let i = 0; i < s1.length; i++) {
-        map.set(s1[i], map.get(s1[i]) + 1 || 1);
-    }
+    let arr1 = new Array(26).fill(0);
+    let arr2 = new Array(26).fill(0);
     
-    let l = 0;
-    let requiredLength = s1.length;
-    let counter = map.size;
-    for (let r = 0; r < s2.length; r++) {
-        let char = s2[r];
-        if(map.has(char)) map.set(char, map.get(char) - 1);
-        if(map.get(char) === 0) counter--;
-        
-        while(counter === 0) {
-            if(r-l+1 === requiredLength) return true;
-            if(map.has(s2[l])) map.set(s2[l], map.get(s2[l]) + 1);
-            if(map.get(s2[l]) === 1) counter++;
-            l++;
-        }
+    for (let i = 0; i < s1.length; i++) {
+        arr1[s1[i].charCodeAt(0) - 'a'.charCodeAt(0)] += 1;
+        arr2[s2[i].charCodeAt(0) - 'a'.charCodeAt(0)] += 1;
     }
+    let matches = 0;
+    for (let i = 0; i < 26; i++) {
+        if(arr1[i] === arr2[i]) matches++;
+    }
+    let l = 0;
+    for (let r = s1.length; r < s2.length; r++) {
+        if (matches === 26) return true;
+        
+        let index = s2[r].charCodeAt(0) - 'a'.charCodeAt(0);
+        arr2[index] +=1;
+        if (arr1[index] === arr2[index]) {
+            matches++;
+        } else if (arr1[index] + 1 === arr2[index]) {
+            matches--;
+        }
+        
+        index = s2[l].charCodeAt(0) - 'a'.charCodeAt(0);
+        arr2[index] -=1;
+        if (arr1[index] === arr2[index]) {
+            matches++;
+        } else if (arr1[index] - 1 === arr2[index]) {
+            matches--;
+        }
+        l++;
+    }
+    if (matches === 26) return true;
     return false;
 };
