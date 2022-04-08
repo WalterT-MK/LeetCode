@@ -4,22 +4,25 @@
  * @return {number}
  */
 var characterReplacement = function(s, k) {
-    var charSet = {};
-    var longestChar = 0;
-    var l = 0;
-    let maxfChar = 0;
-    for (var r = 0; r < s.length; r++) {
-        if (charSet[s[r]]) {
-            charSet[s[r]] += 1;
+    let l = 0;
+    let obj = {};
+    let maxfchar = 0;
+    let ans = 0;
+    for (let r = 0; r < s.length; r++) {
+        if(obj[s[r]]) {
+            obj[s[r]] += 1;
         } else {
-            charSet[s[r]] = 1;
+            obj[s[r]] = 1;
         }
-        maxfChar = Math.max(charSet[s[r]], maxfChar);
-        if (r - l + 1 - maxfChar > k) {
-            charSet[s[l]] -= 1;
-            l += 1;
+        maxfchar = Math.max(maxfchar, obj[s[r]]);
+        if(r-l+1 - maxfchar > k) {
+            
+            obj[s[l]] -= 1;
+            l++;
         }
-        longestChar = Math.max(longestChar, r - l + 1);
+        if ((r - l + 1) > ans) {
+            ans = r - l + 1;
+        } 
     }
-    return longestChar;
+    return ans;
 };
