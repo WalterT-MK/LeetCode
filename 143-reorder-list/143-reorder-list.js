@@ -27,8 +27,9 @@ var reorderList = function(head) {
     var reverse = (head) => {
         let curr = head;
         let prev = null;
+        let temp = null;
         while (curr) {
-            let temp = curr.next;
+            temp = curr.next;
             curr.next = prev;
             prev = curr;
             curr = temp;
@@ -37,10 +38,11 @@ var reorderList = function(head) {
     }
     
     var merge = (first, second) => {
-        
+        let l1 = null;
+        let l2 = null;
         while (second) {
-            let l1 = first.next;
-            let l2 = second.next;
+            l1 = first.next;
+            l2 = second.next;
             
             first.next = second;
             second.next = l1;
