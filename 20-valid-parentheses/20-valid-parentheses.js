@@ -3,29 +3,24 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    
-    if (s.length % 2 != 0 || s.length === 1) {
-        return false;
+    let arr = [];
+    let dict = {
+        ')':'(',
+        ']':'[',
+        '}':'{'
     }
     
-    var arry = [];
-    var dict = {
-        ')' : '(',
-        '}' : '{',
-        ']' : '[',
-    };
-    for (var i = 0; i < s.length; i++) {
-        var curr = s[i];
-        var dele = dict[curr];
+    for (let i = 0; i < s.length; i++) {
+        let dele = dict[s[i]];
         if (dele) {
-            if (dele === arry[arry.length - 1]) {
-                arry.pop();
+            if(dele === arr[arr.length - 1]) {
+                arr.pop();
             } else {
                 return false;
             }
         } else {
-            arry.push(curr);
+            arr.push(s[i]);
         }
     }
-    return !arry.length;
+    return arr.length === 0;
 };
