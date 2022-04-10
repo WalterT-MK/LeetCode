@@ -16,24 +16,25 @@ var addTwoNumbers = function(l1, l2) {
     let carry = false;
     let sum = null;
     while(l1 || l2 || carry) {
-        curr.next = new ListNode(0);
         if (l1) {
-            curr.next.val += l1.val;
+            sum += l1.val;
             l1 = l1.next;
         }
         if (l2) {
-            curr.next.val += l2.val;
+            sum += l2.val;
             l2 = l2.next;
         }
         if (carry) {
-            curr.next.val += 1;
+            sum += 1;
             carry = false;
         }
-        if (curr.next.val > 9) {
-            curr.next.val -= 10;
+        if (sum > 9) {
+            sum -= 10;
             carry = true;
         }
+        curr.next = new ListNode(sum);
         curr = curr.next;
+        sum = 0;
     }
     return node.next;
 };
