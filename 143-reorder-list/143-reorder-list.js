@@ -10,50 +10,45 @@
  * @return {void} Do not return anything, modify head in-place instead.
  */
 var reorderList = function(head) {
-    
-    //use double pointer to find the middle node;
     var half = (head) => {
         let fast = head;
         let slow = head;
-        while (fast.next && fast.next.next ) {
+        while (fast.next && fast.next.next) {
             slow = slow.next;
             fast = fast.next.next;
         }
         let secondHalf = slow.next;
-        slow.next = null; //cut down the linked list
+        slow.next = null;
         return secondHalf;
     }
-    //reverse order of second half of linked list
+    
     var reverse = (head) => {
         let curr = head;
         let prev = null;
-        let temp = null;
         while (curr) {
-            temp = curr.next;
+            let temp = curr.next;
             curr.next = prev;
             prev = curr;
-            curr = temp;
+            curr = temp
         }
         return prev;
     }
     
-    var merge = (first, second) => {
-        let l1 = null;
-        let l2 = null;
-        while (second) {
-            l1 = first.next;
-            l2 = second.next;
+    var merge = (head1, head2) => {
+        let temp1, temp2
+        while (head2) {
+            temp1 = head1.next;
+            temp2 = head2.next;
             
-            first.next = second;
-            second.next = l1;
+            head1.next = head2;
+            head2.next = temp1;
             
-            first = l1;
-            second = l2;
+            head1 = temp1;
+            head2 = temp2;
         }
     }
     
-    var secondHalf = half(head);
+    let secondHalf = half(head);
     secondHalf = reverse(secondHalf);
     merge(head, secondHalf);
-    
 };
