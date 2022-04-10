@@ -26,7 +26,6 @@ var evalRPN = function(tokens) {
         } else {
             stack.push(curr);
         }
-        console.log(stack)
     }
     return stack[0]
 };
