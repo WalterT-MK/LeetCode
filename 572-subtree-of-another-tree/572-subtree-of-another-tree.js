@@ -12,11 +12,11 @@
  * @return {boolean}
  */
 var isSubtree = function(root, subRoot) {
-    var isEqual = (p,q) => {
+    let isSame = (p, q) => {
         if (!p && !q) return true;
-        if (!p || !q || p.val !== q.val) return false;
-        return isEqual(p.left, q.left) && isEqual(p.right, q.right); 
+        if (!p || ! q || p.val !== q.val) return false;
+        return isSame(p.left, q.left) && isSame(p.right, q.right);
     }
     if (!root) return !subRoot;
-    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot) || isEqual(root, subRoot);
+    return isSame(root, subRoot) || isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
 };
