@@ -11,14 +11,13 @@
  * @return {number}
  */
 var diameterOfBinaryTree = function(root) {
-    if (root === null) return 0;
     let ans = 1;
-    let dfs = (root) => {
-        if (root === null) return 0;
-        let left = dfs(root.left);
-        let right = dfs(root.right);
-        ans = Math.max(ans, left + right + 1);
-        return Math.max(left, right) + 1;
+    var dfs = (root) => {
+        if (!root) return 0;
+        let l = dfs(root.left);
+        let r = dfs(root.right);
+        ans = Math.max(ans, l + r + 1);
+        return Math.max(l,r) + 1;
     }
     dfs(root);
     return ans - 1;
