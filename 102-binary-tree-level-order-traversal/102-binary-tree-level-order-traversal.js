@@ -14,16 +14,16 @@ var levelOrder = function(root) {
     let q = [root];
     let ans = [];
     while (q[0]) {
-        let temp = [];
         let level = [];
-        while(q.length !== 0) {
+        let _ans = [];
+        while (q.length !== 0) {
             let curr = q.shift();
-            level.push(curr.val);
-            if (curr.left) temp.push(curr.left);
-            if (curr.right) temp.push(curr.right);
+            _ans.push(curr.val);
+            if (curr.left) level.push(curr.left);
+            if (curr.right) level.push(curr.right);
         }
-        ans.push(level);
-        q = temp;
+        ans.push(_ans);
+        q = level;
     }
     return ans;
 };
