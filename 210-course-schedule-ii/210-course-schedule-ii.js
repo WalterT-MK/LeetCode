@@ -4,7 +4,6 @@
  * @return {number[]}
  */
 var findOrder = function(numCourses, prerequisites) {
-    let ans = [];
     let map = new Map();
     for (let i = 0; i < numCourses; i++) {
         map.set(i, []);
@@ -13,23 +12,28 @@ var findOrder = function(numCourses, prerequisites) {
         map.get(course).push(prereq);
     }
     
-    let cycle = new Set();
     let visit = new Set();
+    let cycle = new Set();
+    let res = [];
+    
     const dfs = (course) => {
         if (cycle.has(course)) return false;
         if (visit.has(course)) return true;
         
         cycle.add(course);
-        for (let pre of map.get(course)) {
-            if (!dfs(pre)) return false;
-        }
-        cycle.delete(course);
         visit.add(course);
-        ans.push(course);
+        for (let req of map.get(course)) {
+            if (!dfs(req)) return false;
+        }
+        
+        cycle.delete(course);
+        
+        res.push(course);
         return true;
     }
+    
     for (let i = 0; i < numCourses; i++) {
         if (!dfs(i)) return [];
     }
-    return ans;
+    return res;
 };
