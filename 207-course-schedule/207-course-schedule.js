@@ -4,8 +4,8 @@
  * @return {boolean}
  */
 var canFinish = function(numCourses, prerequisites) {
-    
     let map = new Map();
+    
     for (let i = 0; i < numCourses; i++) {
         map.set(i,[]);
     }
@@ -23,7 +23,8 @@ var canFinish = function(numCourses, prerequisites) {
             if (!dfs(pre)) return false;
         }
         visit.delete(course);
-        map.set(course, []);
+        map.set(course,[]);
+        
         return true;
     }
     for (let i = 0; i < numCourses; i++) {
