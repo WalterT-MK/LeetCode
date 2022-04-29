@@ -4,40 +4,41 @@
  * @return {string}
  */
 var minWindow = function(s, t) {
-    let min = '',
-        set = {};
+    if (t.length > s.length) return '';
+    let mapt = new Map();
+    let maps = new Map();
     
-    t.split('').forEach(char => {
-        if (set[char]) set[char]++;
-        else set[char] = 1;
-    });
-    
-    let count = Object.keys(set).length;
-    
-    let l = 0,
-        r = -1;
+    for (let i = 0; i < t.length; i++) {
+        // mapt.set(t[i], mapt.get(t[i]) + 1 : 1);
+        if (mapt.has(t[i])) mapt.set(t[i], mapt.get(t[i]) + 1);
+        else mapt.set(t[i], 1);
+    }
+    let match = mapt.size;
+    let l = 0;
+    let r = -1;
+    let res = '';
     
     while (r < s.length) {
-        if (count === 0) {
+        if (match === 0) {
             let curr = s[l];
-            if (set[curr] !== null) set[curr]++;
-            if (set[curr] > 0) count += 1;
-            // if ((r - l + 1) > min.length) min = s.substring(l, r + 1);
-            let temp = s.substring(l, r + 1)
-            if (min === ''){
-                min = temp;
+            if (mapt.has(curr)) mapt.set(curr, mapt.get(curr) + 1);
+            if (mapt.get(curr) > 0) match += 1;
+            let temp = s.substring(l,r + 1);
+            if (res === '') {
+                res = temp;
             } else {
-                if (temp.length < min.length) min = temp;
+                if (temp.length < res.length) res = temp;
             }
             
-            l++;
+            l += 1;
         } else {
-            r++; 
+            r += 1;
             let curr = s[r];
-            if (set[curr] !== null) set[curr]--;
-            if (set[curr] === 0) count--;
+            if (mapt.has(curr)) mapt.set(curr, mapt.get(curr) - 1);
+            if (mapt.get(curr) === 0) match -= 1;
         }
     }
-    return min;
+    
+    return res;
     
 };
