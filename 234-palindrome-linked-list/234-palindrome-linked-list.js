@@ -12,7 +12,7 @@
 var isPalindrome = function(head) {
     let fast = head;
     let slow = head;
-    while (fast && fast.next) {
+    while (fast && fast.next && fast.next.next) {
         fast = fast.next.next;
         slow = slow.next;
     }
@@ -23,12 +23,10 @@ var isPalindrome = function(head) {
         prev = slow;
         slow = temp;
     }
-    while (prev) {
-        if (prev.val !== head.val) {
-            return false;
-        }
-        prev = prev.next;
+    while(prev.next) {
+        if (head.val !== prev.val) return false;
         head = head.next;
+        prev = prev.next;
     }
     return true;
 };
