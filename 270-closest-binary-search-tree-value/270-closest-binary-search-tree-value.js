@@ -24,8 +24,8 @@ var closestValue = function(root, target) {
     obj.sort((a,b) => a[1] - b[1]);
     return obj[0][0]*/
     
-    
-    let obj = [];
+    //brute force, store all node.val into array, look for two number, without sorting.
+    /*let obj = [];
     const dfs = (node) => {
         if (node.left) dfs(node.left);
         obj.push(node.val);
@@ -42,5 +42,33 @@ var closestValue = function(root, target) {
             }
         }
     }
-    return obj[obj.length - 1];
+    return obj[obj.length - 1];*/
+    
+    // failed soluction
+    /*const dfs = (node, prev) => {
+        if ((node.val <= target && prev >= target) || (node.val >= target && prev <= target)) {
+            if (Math.abs(target - node.val) > Math.abs(target - prev)) {
+                return prev;
+            } else {
+                return node.val;
+            }
+        }
+        if (node.val > target) {
+            if (node.left) return dfs(node.left, node.val);
+            else return node.val;
+        }
+        if (node.val < target) {
+            if (node.right) return dfs(node.right, node.val);
+            else return node.val;
+        }
+    }
+    let temp = dfs(root, root.val);
+    return temp;*/
+    let val, closest = root.val;
+    while (root) {
+        val = root.val;
+        closest = Math.abs(val - target) < Math.abs(closest - target) ? val : closest;
+        root =  target < root.val ? root.left : root.right;
+    }
+    return closest;
 };
