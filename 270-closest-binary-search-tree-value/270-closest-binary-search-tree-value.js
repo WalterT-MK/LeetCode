@@ -11,7 +11,7 @@
  * @param {number} target
  * @return {number}
  */
-var closestValue = function(root, target) {
+var closestValue = function(root, target,min = null) {
     //brute force, calculate all nodes' different with target, sort
     //time: O(nlog(n)) space: O(n)
     /*let obj = [];
@@ -64,11 +64,27 @@ var closestValue = function(root, target) {
     }
     let temp = dfs(root, root.val);
     return temp;*/
-    let val, closest = root.val;
-    while (root) {
-        val = root.val;
-        closest = Math.abs(val - target) < Math.abs(closest - target) ? val : closest;
-        root =  target < root.val ? root.left : root.right;
+    
+    
+    // let val, closest = root.val;
+    // while (root) {
+    //     val = root.val;
+    //     closest = Math.abs(val - target) < Math.abs(closest - target) ? val : closest;
+    //     root =  target < root.val ? root.left : root.right;
+    // }
+    // return closest;
+        if (root===null){
+        return min;
     }
-    return closest;
+
+    if (min === null || Math.abs(target - root.val) < Math.abs(target - min)) {
+        min = root.val;
+    }
+
+    if (target < root.val){
+        return closestValue(root.left, target, min);
+    }
+    else{
+        return closestValue(root.right, target, min);
+    }
 };
