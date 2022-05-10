@@ -16,7 +16,6 @@ var combinationSum = function(candidates, target) {
     var paths = [];
     
     var find = (t, p, i) => {
-        console.log('considering:', t, p, i);
         
         if (t === 0) {
             paths.push(p);
