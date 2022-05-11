@@ -30,7 +30,7 @@ var reverseKGroup = function(head, k) {
     
     while (node) {
         let count = 0;
-        // node = head;
+        node = head;
         while (count < k && node) {
             node = node.next;
             count += 1;
