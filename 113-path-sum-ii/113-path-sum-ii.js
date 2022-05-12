@@ -35,8 +35,7 @@ var pathSum = function(root, targetSum) {
         path.push(node.val);
         
         if (!node.left && !node.right) {
-            if (nSum === targetSum) res.push([...path]);
-            
+            if (nSum === targetSum) res.push(JSON.parse(JSON.stringify(path)));
         }
         if (node.left) dfs(node.left, nSum, path);
         if (node.right) dfs(node.right, nSum, path);
