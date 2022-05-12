@@ -12,18 +12,35 @@
  * @return {number[][]}
  */
 var pathSum = function(root, targetSum) {
+    // let res = [];
+    // if (!root) return res;
+    // const dfs = (node, sum, arry) => {
+    //     sum += node.val;
+    //     let newArry = JSON.parse(JSON.stringify(arry));
+    //     newArry.push(node.val);
+    //     if (!node.left && !node.right) {
+    //         if (sum === targetSum) res.push(newArry);
+    //         else ;
+    //     }
+    //     if (node.left) dfs(node.left, sum, newArry);
+    //     if (node.right) dfs(node.right, sum, newArry);
+    // }
+    // dfs(root, 0, []);
+    // return res;
     let res = [];
     if (!root) return res;
-    const dfs = (node, sum, arry) => {
-        sum += node.val;
-        let newArry = JSON.parse(JSON.stringify(arry));
-        newArry.push(node.val);
+    const dfs = (node, sum, path) => {
+        let nSum = sum + node.val;
+        
+        path.push(node.val);
+        
         if (!node.left && !node.right) {
-            if (sum === targetSum) res.push(newArry);
-            else ;
+            if (nSum === targetSum) res.push([...path]);
+            
         }
-        if (node.left) dfs(node.left, sum, newArry);
-        if (node.right) dfs(node.right, sum, newArry);
+        if (node.left) dfs(node.left, nSum, path);
+        if (node.right) dfs(node.right, nSum, path);
+        path.pop();
     }
     dfs(root, 0, []);
     return res;
