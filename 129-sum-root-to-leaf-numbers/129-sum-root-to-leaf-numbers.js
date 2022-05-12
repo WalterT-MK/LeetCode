@@ -14,12 +14,12 @@ var sumNumbers = function(root) {
     let res = 0;
     const dfs = (node, prev) => {
         
-        prev = prev + node.val.toString();
-        if (!node.left && !node.right) res += Number(prev);
+        prev = prev * 10 + node.val;
+        if (!node.left && !node.right) res += prev;
 
         if (node.left) dfs(node.left, prev);
         if (node.right) dfs(node.right, prev);
     }
-    dfs(root, '');
+    dfs(root, 0);
     return res;
 };
