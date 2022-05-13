@@ -3,7 +3,7 @@
  * @return {string[]}
  */
 var letterCasePermutation = function(s) {
-    let res = [];
+    /*let res = [];
     let char;
     for (let i = 0; i < s.length; i++) {
         if (Number.isInteger(Number(s[i]))) continue;
@@ -22,6 +22,26 @@ var letterCasePermutation = function(s) {
                     char = curr[i].toLowerCase();
                     level.push(curr.slice(0,i) + char + curr.slice(i+1));
                 }
+            }
+        }
+        res = res.concat(level);
+    }
+    if (res.length === 0) res = [s];
+    return res;*/
+    let res = [];
+    let lowerS = s.toLowerCase();
+    let char;
+    for (let i = 0; i < lowerS.length; i++) {
+        if (Number.isInteger(Number(lowerS[i]))) continue;
+        let level = [];
+        if (res.length === 0) {
+            level.push(lowerS);
+            char = lowerS[i].toUpperCase();
+            level.push(lowerS.slice(0,i) + char + lowerS.slice(i+1));
+        } else {
+            for (let curr of res) {
+                char = curr[i].toUpperCase();
+                level.push(curr.slice(0,i) + char + curr.slice(i+1));
             }
         }
         res = res.concat(level);
