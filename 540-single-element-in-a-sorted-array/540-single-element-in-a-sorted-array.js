@@ -8,7 +8,7 @@ var singleNonDuplicate = function(nums) {
     while (l < r) {
         let mid = l + Math.floor((r - l) / 2);
         if (nums[mid] === nums[mid + 1]) {
-            if ((r - mid + 1) % 2 === 0) {
+            if ((r - mid - 1) % 2 === 0) {
                 r = mid - 1;
             } else {
                 l = mid + 2;
