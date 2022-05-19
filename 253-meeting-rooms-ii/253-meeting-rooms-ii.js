@@ -9,7 +9,6 @@ var minMeetingRooms = function(intervals) {
     let size = 0;
     for (let i = 0; i < intervals.length; i++) {
         if (heapMap.size() !== 0 && intervals[i][0] >= heapMap.front().element[1]) {
-            console.log(heapMap.front())
             heapMap.dequeue();
         }
         heapMap.enqueue(intervals[i]);
