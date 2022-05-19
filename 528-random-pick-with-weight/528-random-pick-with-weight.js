@@ -17,11 +17,18 @@ var Solution = function(w) {
  */
 Solution.prototype.pickIndex = function() {
     let target = Math.random() * this.total;
-    for (let i = 0; i < this.weight.length; i++) {
-        if (this.weight[i] > target) {
-            return i;
-        }
+    // for (let i = 0; i < this.weight.length; i++) {
+    //     if (this.weight[i] > target) {
+    //         return i;
+    //     }
+    // }
+    let l = 0; let r = this.weight.length - 1;
+    while (l < r) {
+        let mid = l + Math.floor((r - l) / 2);
+        if (this.weight[mid] > target) r = mid;
+        else l = mid + 1;
     }
+    return l;
 };
 
 /** 
