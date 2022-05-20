@@ -4,9 +4,9 @@
  */
 var decodeString = function(s) {
     let queue = [];
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] !== ']') {
-            queue.push(s[i]);
+    for (let char of s) {
+        if (char !== ']') {
+            queue.push(char);
             continue;
         }
         let curr = queue.pop();
