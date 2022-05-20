@@ -21,7 +21,7 @@ var decodeString = function(s) {
             num = curr + num;
             curr = queue.pop();
         }
-        queue.push(curr);
+        if (curr) queue.push(curr);
         queue.push(str.repeat(Number(num)));
     }
     return queue.join('');
