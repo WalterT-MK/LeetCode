@@ -3,29 +3,27 @@
  * @return {number}
  */
 var evalRPN = function(tokens) {
-    let stack = [];
-    let num1, num2;
+    let queue = [];
     for (let i = 0; i < tokens.length; i++) {
-        let curr = tokens[i];
-        if (curr === '+') {
-            num1 = Number(stack.pop());
-            num2 = Number(stack.pop());
-            stack.push(num1 + num2);
-        } else if (curr === '-') {
-            num1 = Number(stack.pop());
-            num2 = Number(stack.pop());
-            stack.push(num2 - num1);
-        } else if (curr === '*') {
-            num1 = Number(stack.pop());
-            num2 = Number(stack.pop());
-            stack.push(num1 * num2);
-        } else if (curr === '/') {
-            num1 = Number(stack.pop());
-            num2 = Number(stack.pop());
-            stack.push(~~(num2/num1));
+        if (tokens[i] === '+') {
+            let a = queue.pop();
+            let b = queue.pop();
+            queue.push(a + b);
+        } else if (tokens[i] === '-') {
+            let a = queue.pop();
+            let b = queue.pop();
+            queue.push(b - a);
+        } else if (tokens[i] === '*') {
+            let a = queue.pop();
+            let b = queue.pop();
+            queue.push(a * b);
+        } else if (tokens[i] === '/') {
+            let a = queue.pop();
+            let b = queue.pop();
+            queue.push(~~(b / a));
         } else {
-            stack.push(curr);
+            queue.push(Number(tokens[i]));
         }
     }
-    return stack[0]
+    return queue[0];
 };
