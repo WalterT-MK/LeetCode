@@ -40,6 +40,6 @@ class miniHeap {
 
         pop() {
             if (this.heap.length === 0) return null;
-            return this.heap.shift();
+            this.heap.shift();
         }
     }
