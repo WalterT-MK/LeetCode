@@ -10,16 +10,12 @@ var Logger = function() {
  */
 Logger.prototype.shouldPrintMessage = function(timestamp, message) {
     if (this.map.has(message)) {
-        if (this.map.get(message) + 10 <= timestamp) {
-            this.map.set(message, timestamp);
-            return true;
-        } else {
+        if (this.map.get(message) + 10 > timestamp) {
             return false;
         }
-    } else {
-        this.map.set(message, timestamp);
-        return true;
     }
+    this.map.set(message, timestamp);
+    return true;
 };
 
 /** 
