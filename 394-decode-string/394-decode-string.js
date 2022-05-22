@@ -3,26 +3,28 @@
  * @return {string}
  */
 var decodeString = function(s) {
-    let queue = [];
+    let stack = [];
+    
     for (let char of s) {
         if (char !== ']') {
-            queue.push(char);
+            stack.push(char); 
             continue;
-        }
-        let curr = queue.pop();
-        let str = '';
+        } 
+        let string = '';
+        let curr = stack.pop();
         while (curr !== '[') {
-            str = curr + str;
-            curr = queue.pop();
+            string = curr + string;
+            curr = stack.pop();
         }
         let num = '';
-        curr = queue.pop();
+        curr = stack.pop();
         while (Number.isInteger(Number(curr))) {
             num = curr + num;
-            curr = queue.pop();
+            curr = stack.pop();
         }
-        if (curr) queue.push(curr);
-        queue.push(str.repeat(Number(num)));
+        if (curr) stack.push(curr);
+        stack.push(string.repeat(Number(num)));
     }
-    return queue.join('');
+    console.log(stack)
+    return stack.join('');
 };
