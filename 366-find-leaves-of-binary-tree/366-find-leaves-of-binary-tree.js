@@ -13,15 +13,15 @@
 var findLeaves = function(root) {
     let res = {};
     const dfs = (node) => {
-        if (node === null) return 0;
-        let depth = Math.max(dfs(node.left), dfs(node.right));
-        if (res[depth]) {
-            res[depth].push(node.val);
+        if (!node) return 0;
+        let height = Math.max(dfs(node.left), dfs(node.right));
+        if (res[height]) {
+            res[height].push(node.val);
         } else {
-            res[depth] = [node.val];
+            res[height] = [node.val];
         }
-        return depth + 1;
+        return height + 1;
     }
-    dfs(root)
+    dfs(root);
     return Object.values(res);
 };
