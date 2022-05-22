@@ -1,7 +1,6 @@
 
 var Logger = function() {
-    this.log = new Map();
-    
+    this.map = new Map();
 };
 
 /** 
@@ -10,16 +9,15 @@ var Logger = function() {
  * @return {boolean}
  */
 Logger.prototype.shouldPrintMessage = function(timestamp, message) {
-    if (this.log.has(message)) {
-        let lastStamp = this.log.get(message);
-        if (lastStamp + 10 <= timestamp) {
-            this.log.set(message, timestamp);
+    if (this.map.has(message)) {
+        if (this.map.get(message) + 10 <= timestamp) {
+            this.map.set(message, timestamp);
             return true;
         } else {
             return false;
         }
     } else {
-        this.log.set(message, timestamp);
+        this.map.set(message, timestamp);
         return true;
     }
 };
