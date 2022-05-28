@@ -19,7 +19,7 @@ var fullJustify = function(words, maxWidth) {
     }
     if (wordsArr) {
         let str = wordsArr.join(' ');
-        str = str + ' '.repeat(maxWidth - str.length);
+        str += ' '.repeat(maxWidth - str.length);
         res.push(str);
     }
     
