@@ -4,15 +4,36 @@
  * @return {string[]}
  */
 var fullJustify = function(words, maxWidth) {
-    let space = [];
     let width = maxWidth;
+    let wordsArr = [];
     let res = [];
-    const formString = (array) => {
-        let stringLen = 0;
-        for (let arr of array) {
-            stringLen += arr.length;
+    for (let word of words) {
+        if (word.length <= width - wordsArr.length) {
+            wordsArr.push(word);
+            width -= word.length;
+        } else {
+            formString(wordsArr);
+            wordsArr = [word];
+            width = maxWidth - word.length;
         }
-        let spaces = maxWidth - stringLen;
+    }
+    if (wordsArr) {
+        let str = wordsArr.join(' ');
+        str = str + ' '.repeat(maxWidth - str.length);
+        res.push(str);
+    }
+    
+    return res;
+    
+    
+    
+    function formString(array) {
+        let charsLen = 0;
+        for (let word of array) {
+            charsLen += word.length;
+        }
+        let spaces = maxWidth - charsLen;
+        
         if (array.length === 1) {
             array[0] += ' '.repeat(spaces);
             res.push(array[0]);
@@ -23,32 +44,12 @@ var fullJustify = function(words, maxWidth) {
         
         let end = array.length - 1;
         let i = 0;
-        
         while (spaces -- > 0) {
-            array[i] += ' ';
-            
-            i = (i + 1) % end;
+            let index = i % end;
+            array[index] += ' ';
+            i += 1;
         }
+        
         res.push(array.join(' '));
     }
-    
-    for (let word of words) {
-        if (word.length <= width - space.length) {
-            space.push(word);
-            width -= word.length;
-        } else {
-            formString(space);
-            space = [word];
-            width = maxWidth - word.length;
-        }
-    }
-    
-    if (space.length) {
-        let string = space.join(' ');
-        string += ' '.repeat(maxWidth - string.length);
-        res.push(string);
-    }
-    return res;
-    
-    
 };
