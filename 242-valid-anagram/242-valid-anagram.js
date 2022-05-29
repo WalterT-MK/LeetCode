@@ -18,5 +18,11 @@ var isAnagram = function(s, t) {
         sArr[s[i].charCodeAt(0) - 'a'.charCodeAt(0)] += 1;
         tArr[t[i].charCodeAt(0) - 'a'.charCodeAt(0)] += 1;
     }
-    return JSON.stringify(sArr) === JSON.stringify(tArr);
+    
+    // return JSON.stringify(sArr) === JSON.stringify(tArr); //compare by stringifying array
+    
+    for (let i = 0; i < 26; i++) {
+        if (sArr[i] !== tArr[i]) return false;
+    }
+    return true;
 };
