@@ -10,9 +10,6 @@ var groupAnagrams = function(strs) {
         if (!dict.has(key)) dict.set(key, []);
         dict.get(key).push(str);
     }
-    let res = [];
-    for (let set of [...dict]) {
-        res.push(set[1]);
-    }
-    return res;
+    
+    return [...dict.values()];
 };
