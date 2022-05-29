@@ -4,12 +4,14 @@
  * @return {number[]}
  */
 var topKFrequent = function(nums, k) {
-    var map1 = new Map();
-    var ans = [];
-    nums.forEach(num => map1.set(num, map1.get(num)+1 || 1));
-    var sortable = [...map1].sort((a,b) => b[1] - a[1]);
-    for (let i = 0; i < k; i++) {
-        ans.push(sortable[i][0])
+    let map = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        map.set(nums[i], (map.get(nums[i]) || 0) + 1);
     }
-    return ans;
+    let arrs = [...map].sort((a, b) => b[1] - a[1]).slice(0, k);
+    let res = [];
+    for (let arr of arrs) {
+        res.push(arr[0]);
+    }
+    return res;
 };
