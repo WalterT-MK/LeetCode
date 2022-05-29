@@ -5,8 +5,8 @@
 var minJumps = function(arr) {
     if (arr.length === 1) return 0;
     let obj = new Map();
-    // for (let i = arr.length - 1; i >= 0; i--) {
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = arr.length - 1; i >= 0; i--) {
+    // for (let i = 0; i < arr.length; i++) {
         if (!obj.has(arr[i])) obj.set(arr[i], []);
         obj.get(arr[i]).push(i);
     }
