@@ -3,14 +3,16 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    var obj = {};
-    for (let i = 0; i < strs.length; i++) {
-        var sortedStr = strs[i].split('').sort().join('');
-        if (obj[sortedStr]) {
-            obj[sortedStr].push(strs[i]);
-        } else {
-            obj[sortedStr] = [strs[i]];
-        }
+    //let chars = new Array(26).fill(0);
+    let dict = new Map();
+    for (let str of strs) {
+        let key = str.split('').sort().join('');
+        if (!dict.has(key)) dict.set(key, []);
+        dict.get(key).push(str);
     }
-    return Object.values(obj)
+    let res = [];
+    for (let set of [...dict]) {
+        res.push(set[1]);
+    }
+    return res;
 };
