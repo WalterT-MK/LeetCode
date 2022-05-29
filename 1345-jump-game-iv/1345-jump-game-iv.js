@@ -17,18 +17,18 @@ var minJumps = function(arr) {
         let [currI, step] = queue.shift();
         
         //check i - 1;
-        let prevI = currI - 1;
-        if (prevI >= 0 && !visited.has(prevI)) {
-            queue.push([prevI, step + 1]);
-            visited.add(prevI);
+        //let prevI = currI - 1;
+        if (currI - 1 >= 0 && !visited.has(currI - 1)) {
+            queue.push([currI - 1, step + 1]);
+            visited.add(currI - 1);
         }
         
         //check i + 1;
-        let nextI = currI + 1;
-        if (nextI < arr.length && !visited.has(nextI)) {
-            if (nextI === arr.length - 1) return step + 1;
-            queue.push([nextI, step + 1]);
-            visited.add(nextI);
+        //let nextI = currI + 1;
+        if (currI + 1 < arr.length && !visited.has(currI + 1)) {
+            if (currI + 1 === arr.length - 1) return step + 1;
+            queue.push([currI + 1, step + 1]);
+            visited.add(currI + 1);
         }
 
         //check arr[i] === arr[j]
@@ -42,8 +42,6 @@ var minJumps = function(arr) {
             }
             obj.delete(arr[currI]);
         }
-        
-        
     }
 };
 
