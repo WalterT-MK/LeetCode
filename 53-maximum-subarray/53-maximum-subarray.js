@@ -9,7 +9,6 @@ var maxSubArray = function(nums) {
         sum += nums[i];
         if (nums[i] >= sum) sum = nums[i];
         if (sum > res) res = sum;
-        console.log(sum)
     }
     return res;
 };
