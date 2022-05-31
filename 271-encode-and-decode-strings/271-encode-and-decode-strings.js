@@ -21,8 +21,7 @@ var encode = function(strs) {
 var decode = function(s) {
     let res = [];
     let i = 0;
-    let len = s.length;
-    while (i < len) {
+    while (i < s.length) {
         
         let j = i;
         while (s[j] !== '#') {
