@@ -3,6 +3,18 @@
  */
 var NumMatrix = function(matrix) {
     this.mat = matrix;
+    let m = matrix.length;
+    let n = matrix[0].length;
+    let rowSum = new Array(m).fill().map(() => new Array(n).fill());
+    
+    for (let i = 0; i< m; i++) {
+        let _sum = 0;
+        for (let j = 0; j < n; j++) {
+            _sum += matrix[i][j];
+            rowSum[i][j] = _sum;
+        }
+    }
+    this.rowSum = rowSum;
 };
 
 /** 
@@ -15,9 +27,13 @@ var NumMatrix = function(matrix) {
 NumMatrix.prototype.sumRegion = function(row1, col1, row2, col2) {
     let sum = 0;
     for (let i = row1; i <= row2; i++) {
-        for (let j = col1; j <= col2; j++) {
-            sum += this.mat[i][j];
+        let _sum;
+        if (col1 === 0) {
+            _sum = this.rowSum[i][col2];
+        } else {
+            _sum = this.rowSum[i][col2] - this.rowSum[i][col1 - 1] 
         }
+        sum += _sum;
     }
     return sum;
 };
